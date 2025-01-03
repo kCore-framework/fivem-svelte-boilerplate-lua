@@ -146,7 +146,7 @@ The boilerplate includes development utilities:
 
 During development, you can either:
 - Use `npm run dev` for hot-reload development server via browser
-- Use `npm run start:game` for auto-updating production build with -watch flag
+- Use `npm run start:game` for auto-updating production build with --watch 
 
 ## Building for Production
 
