@@ -1,14 +1,17 @@
-import { writable } from 'svelte/store';
-import { nuiFetch } from './nuiFetch';
-import { onNuiMessage } from './nuiListen';
+import { onMount, onDestroy } from "svelte";
 
-export const visibility = writable(false);
+import type { NuiMessage } from "./nuiListen";
 
-onNuiMessage<{ visible: boolean }>('setVisible', (data) => {
-    visibility.set(data.visible);
-});
+export function onNuiMessage<T = unknown>(
+  action: string,
+  handler: (data: T) => void,
+) {
+  const eventListener = (event: MessageEvent<NuiMessage<T>>) => {
+    const { type: eventAction, data } = event.data;
 
-export async function setVisible(show: boolean) {
-  visibility.set(show);
-  await nuiFetch('setVisible', { visible: show });
+    eventAction === action && handler(data);
+  };
+
+  onMount(() => window.addEventListener("message", eventListener));
+  onDestroy(() => window.removeEventListener("message", eventListener));
 }
