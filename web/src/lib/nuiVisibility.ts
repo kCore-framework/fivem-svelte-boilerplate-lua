@@ -1,6 +1,14 @@
 import { onMount, onDestroy } from "svelte";
+import { writable } from 'svelte/store';
 
 import type { NuiMessage } from "./nuiListen";
+
+export const visibility = writable(false);
+
+
+export function setVisible(state: boolean) {
+  visibility.set(state);
+}
 
 export function onNuiMessage<T = unknown>(
   action: string,

@@ -2,10 +2,19 @@
   import { nuiFetch } from "./lib/nuiFetch";
   import { visibility, setVisible } from "./lib/nuiVisibility";
   import { onDestroy } from 'svelte';
+  import { onNuiMessage } from "./lib/nuiListen";
 
   let count = $state(0);
   let shouldDisplay = $state(false);
   let opacity = $state(0);
+
+  onNuiMessage<{visible: boolean}>("setVisible", (data) => {
+    setVisible(data.visible);
+  });
+
+  onNuiMessage<{count: number}>("updateCount", (data) => {
+    count = data.count;
+  });
 
   $effect(() => { // hehe we fade in, very meh!
     if ($visibility) {
