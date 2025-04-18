@@ -14,27 +14,33 @@ A modern, TypeScript-ready boilerplate for FiveM NUI development using Svelte an
 ## Getting Started
 
 1. Clone this repository into your resources folder:
+
 ```bash
 cd resources
 git clone https://your-repository/fivem-svelte-boilerplate-lua
 ```
 
 2. Install dependencies:
+
 ```bash
 cd fivem-svelte-boilerplate-lua/web/
 npm install
 ```
 
 3. Start development server:
+
 ```bash
 npm run dev
 ```
+
 or have an auto updating production build via -watch
+
 ```bash
 npm run start:game
 ```
 
 4. Build for production:
+
 ```bash
 npm run build
 ```
@@ -48,6 +54,10 @@ fivem-svelte-boilerplate-lua/
 │   ├── node_modules/     # Node.js dependencies
 │   ├── public/           # Static assets
 │   └── src/              # Source code
+│       ├── Components/         # Components
+│       │   ├── Counter.svelte  # Counter component
+│       ├── providers/          # Utility libraries
+│       │   ├── VisibilityProvider.svelte  # Viability provider
 │       ├── lib/          # Utility libraries
 │       │   ├── nuiFetch.ts    # NUI fetch utilities
 │       │   ├── nuiListen.ts   # NUI event listeners
@@ -65,16 +75,18 @@ fivem-svelte-boilerplate-lua/
 
 ## Usage
 
-### Client-Side Example Commands 
+### Client-Side Example Commands
 
 The boilerplate comes with two built-in example commands:
 
 1. Toggle UI visibility:
+
 ```lua
 /toggleNui
 ```
 
 2. Update counter value:
+
 ```lua
 /updateCount [number]
 ```
@@ -85,8 +97,8 @@ The boilerplate comes with two built-in example commands:
 
 ```typescript
 // Send data to Lua client
-await nuiFetch("eventName", { 
-  // your data here 
+await nuiFetch("eventName", {
+  // your data here
 });
 ```
 
@@ -145,12 +157,14 @@ The boilerplate includes development utilities:
 - TypeScript support for better development experience
 
 During development, you can either:
+
 - Use `npm run dev` for hot-reload development server via browser
-- Use `npm run start:game` for auto-updating production build with --watch 
+- Use `npm run start:game` for auto-updating production build with --watch
 
 ## Building for Production
 
 1. Build the UI:
+
 ```bash
 npm run build
 ```
